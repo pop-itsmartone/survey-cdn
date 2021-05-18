@@ -1,0 +1,8 @@
+/application/logs
+/export_file
+/upload
+/tmp_upload
+/report
+/image_upload
+/scan_upload_tmp
+.DS_Store
