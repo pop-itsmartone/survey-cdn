@@ -1,0 +1,67 @@
+<h2>{{ text_instruction }}</h2>
+<p><b>{{ text_description }}</b></p>
+<div class="well well-sm">
+<p>{{ text_title }}</p>
+<p>{{ text_code_bank }} {{ payment_bank_krungsri_code_bank }}<br/>
+{{ text_swift }} {{ payment_bank_krungsri_swift }}<br/>
+{{ bank }}</p>
+<p>{{ text_payment }}</p>
+</div>
+<div class="buttons">
+  <div class="pull-right">
+    <input type="button" value="{{ button_confirm }}" id="button-confirm" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+  </div>
+</div>
+
+<!-- <form id="payment_confirmation" action="https://testsecureacceptance.cybersource.com/pay" method="post"> -->
+
+<form id="payment_confirmation" action="https://secureacceptance.cybersource.com/pay" method="post">
+    <input type="hidden" name="access_key" value="{{ krungsri_access_key }}">
+    <input type="hidden" name="profile_id" value="{{ krungsri_profile_id }}">
+    <input type="hidden" name="transaction_uuid" value="{{ krungsri_transaction_uuid }}">
+    <input type="hidden" name="signed_field_names" value="{{ krungsri_signed_field_names }}">
+    <input type="hidden" name="unsigned_field_names" value="{{ krungsri_unsigned_field_names }}">
+    <input type="hidden" name="signed_date_time" value="{{ krungsri_signed_date_time }}">
+    <input type="hidden" name="locale" value="{{ krungsri_locale }}">
+    <input type="hidden" name="transaction_type" value="{{ krungsri_transaction_type }}">
+    <input type="hidden" name="reference_number" value="{{ krungsri_reference_number }}">
+    <input type="hidden" name="amount" value="{{ krungsri_amount }}">
+    <input type="hidden" name="currency" value="{{ krungsri_currency }}">
+    <input type="hidden" id="signature" name="signature" value="{{ krungsri_token }}">
+    <input type="hidden" name="bill_to_forename" value="{{ krungsri_bill_to_forename }}">
+    <input type="hidden" name="bill_to_surname" value="{{ krungsri_bill_to_surname }}">
+    <input type="hidden" name="bill_to_email" value="{{ krungsri_bill_to_email }}">
+    <input type="hidden" name="bill_to_phone" value="{{ krungsri_bill_to_phone }}">
+    <input type="hidden" name="bill_to_address_line1" value="{{ krungsri_bill_to_address_line1 }}">
+    <input type="hidden" name="bill_to_address_city" value="{{ krungsri_bill_to_address_city }}">
+    <input type="hidden" name="bill_to_address_state" value="{{ krungsri_bill_to_address_state }}">
+    <input type="hidden" name="bill_to_address_country" value="{{ krungsri_bill_to_address_country }}">
+    <input type="hidden" name="bill_to_address_postal_code" value="{{ krungsri_bill_to_address_postal_code }}">
+    <input type="hidden" name="override_custom_receipt_page" value="{{ krungsri_override_custom_receipt_page }}">
+    {{ item_html }}
+</form>
+<script type="text/javascript"><!--
+$('#button-confirm').on('click', function() {
+	$("#payment_confirmation").submit();
+	/*
+	$.ajax({
+		url: 'index.php?route=extension/payment/bank_krungsri/confirm',
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-confirm').button('loading');
+		},
+		complete: function() {
+			$('#button-confirm').button('reset');
+		},
+		success: function(json) {
+			if (json['redirect']) {
+				location = json['redirect'];	
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+	*/
+});
+//--></script>

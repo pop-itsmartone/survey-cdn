@@ -1,0 +1,32 @@
+<h2>{{ text_instruction }}</h2>
+<p><b>{{ text_description }}</b></p>
+<div class="well well-sm">
+<p>{{ text_title }}</p>
+<p>{{ text_code_bank }} {{ payment_bank_bangkok_code_bank }}<br/>
+{{ text_swift }} {{ payment_bank_bangkok_swift }}<br/>
+{{ bank }}</p>
+<p>{{ text_payment }}</p>
+</div>
+<div class="buttons">
+  <div class="pull-right">
+    <input type="button" value="{{ button_confirm }}" id="button-confirm" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+  </div>
+</div>
+
+<form id="payment_confirmation" method="post" action="{{ bangkok_post_payment_url }}">
+  <input type="hidden" name="merchantId" value="{{ bangkok_merchant_id }}">
+  <input type="hidden" name="amount" value="{{ bangkok_amount }}">
+  <input type="hidden" name="orderRef" value ="{{ bangkok_reference_number }}">
+  <input type="hidden" name="currCode" value="764">
+  <input type="hidden" name="successUrl" value="{{ bangkok_success_url }}">
+  <input type="hidden" name="failUrl" value="{{ bangkok_fail_url }}">
+  <input type="hidden" name="cancelUrl" value="{{ bangkok_cancel_url }}">
+  <input type="hidden" name="payType" value="N">
+  <input type="hidden" name="lang" value="E">
+  <input type="hidden" name="remark" value="-">
+</form>
+<script type="text/javascript"><!--
+$('#button-confirm').on('click', function() {
+	$("#payment_confirmation").submit();
+});
+//--></script>
